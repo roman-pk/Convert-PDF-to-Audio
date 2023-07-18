@@ -15,7 +15,8 @@ def get_file_path():
     window.destroy()
 
 
-def convert_pdf_to_text(file_path):
+def convert_pdf_to_text():
+    global file_path
     # Takes pdf location as an argument and then converts that pdf to text
     reader = PdfReader(file_path)
     pdf_text = ''
@@ -24,15 +25,13 @@ def convert_pdf_to_text(file_path):
     return pdf_text
 
 
-# TODO convert text to voice and save as mp3 file
-def text_to_speech_file(text):
+def text_to_speech_file():
+    global text
     language = 'en'
     converted_file = gTTS(text=text, lang=language, slow=False)
     converted_file.save("Text.mp3")
 
 
-
-# Create a little GUI for user to select a file to convert
 file_path = ""
 
 window = Tk()
@@ -42,5 +41,5 @@ button = Button(text='Choose your pdf file for conversion', command=get_file_pat
 button.pack()
 window.mainloop()
 
-text = convert_pdf_to_text(file_path)
-audio_file = text_to_speech_file(text)
+text = convert_pdf_to_text()
+text_to_speech_file()
